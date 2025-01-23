@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stored Messages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center">📩 Saved Messages</h2>
+        <ul id="message-list" class="list-group mt-4"></ul>
+        <a href="contact.html" class="btn btn-secondary mt-4">Back to Contact Page</a>
+    </div>
+
+    <script>
+        let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+        let messageList = document.getElementById("message-list");
+
+        if (contacts.length === 0) {
+            messageList.innerHTML = "<li class='list-group-item'>No messages yet!</li>";
+        } else {
+            contacts.forEach((contact, index) => {
+                let listItem = document.createElement("li");
+                listItem.className = "list-group-item";
+                listItem.innerHTML = `<strong>${contact.name} (${contact.email})</strong><br>${contact.message}<br><small>${contact.timestamp}</small>`;
+                messageList.appendChild(listItem);
+            });
+        }
+    </script>
+
+</body>
+</html>
