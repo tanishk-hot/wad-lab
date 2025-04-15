@@ -1,0 +1,36 @@
+<h2>Register</h2>
+<form #form="ngForm" (ngSubmit)="register()">
+
+  <label>Name:</label><br />
+  <input [(ngModel)]="user.name" name="name" required /><br /><br />
+
+  <label>Date of Birth:</label><br />
+  <input [(ngModel)]="user.dob" name="dob" type="date" required /><br /><br />
+
+  <label>Gender:</label><br />
+  <select [(ngModel)]="user.gender" name="gender" required>
+    <option value="" disabled selected>Select gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select><br /><br />
+
+  <label>Address:</label><br />
+  <textarea [(ngModel)]="user.address" name="address" required></textarea><br /><br />
+
+  <!-- Email -->
+  <label>Email:</label><br />
+  <input [(ngModel)]="user.email" name="email" required #email="ngModel" /><br />
+  <span *ngIf="email.invalid && email.touched" style="color:red;">Email is required.</span><br /><br />
+
+  <!-- Contact No -->
+  <label>Contact No:</label><br />
+  <input [(ngModel)]="user.contactNo" name="contactNo" type="tel" required /><br /><br />
+
+  <!-- Password -->
+  <label>Password:</label><br />
+  <input [(ngModel)]="user.password" name="password" type="password" required #password="ngModel" /><br />
+  <span *ngIf="password.invalid && password.touched" style="color:red;">Password is required.</span><br /><br />
+
+  <button type="submit" [disabled]="form.form.invalid">Register</button>
+</form>

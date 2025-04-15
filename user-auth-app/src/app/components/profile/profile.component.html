@@ -1,0 +1,16 @@
+<div class="profile-container">
+    <h2>User Profile</h2>
+  
+    <div *ngIf="user">
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Date of Birth:</strong> {{ user.dob }}</p>
+      <p><strong>Gender:</strong> {{ user.gender }}</p>
+      <p><strong>Address:</strong> {{ user.address }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Contact No:</strong> {{ user.contactNo }}</p>
+      <p><strong>Password:</strong> {{ user.password }}</p>
+    </div>
+  
+    <button (click)="logout()">Logout</button>
+  </div>
+  

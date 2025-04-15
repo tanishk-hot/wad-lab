@@ -1,0 +1,13 @@
+<h2>Login</h2>
+<form (ngSubmit)="login()">
+  <label>Email:</label><br />
+  <input [(ngModel)]="email" name="email" required /><br /><br />
+
+  <label>Password:</label><br />
+  <input [(ngModel)]="password" name="password" type="password" required /><br /><br />
+
+  <div *ngIf="errorMessage" style="color:red;">{{ errorMessage }}</div><br />
+
+  <button type="submit">Login</button>
+  <button type="button" (click)="goToRegister()">Register New User</button>
+</form>
