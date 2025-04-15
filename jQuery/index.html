@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div data-role="page" id="loginPage">
+        <div data-role="header">
+            <h1>Login</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                <input type="submit" value="Login" data-theme="b">
+            </form>
+            <a href="#registerPage" class="ui-btn">Register New Account</a>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div data-role="page" id="registerPage">
+        <div data-role="header">
+            <h1>Register</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <form id="registerForm">
+                <label for="newUsername">Username:</label>
+                <input type="text" name="newUsername" id="newUsername" required>
+                <label for="newPassword">Password:</label>
+                <input type="password" name="newPassword" id="newPassword" required>
+                <input type="submit" value="Register" data-theme="b">
+            </form>
+            <a href="#loginPage" class="ui-btn">Back to Login</a>
+        </div>
+    </div>
+
+    <!-- Tasks Page -->
+    <div data-role="page" id="tasksPage">
+        <div data-role="header">
+            <h1>My Tasks</h1>
+            <a href="#" id="logoutBtn" class="ui-btn ui-btn-right">Logout</a>
+        </div>
+        <div data-role="main" class="ui-content">
+            <form id="taskForm">
+                <label for="taskTitle">Task Title:</label>
+                <input type="text" name="taskTitle" id="taskTitle" required>
+                <input type="submit" value="Add Task" data-theme="b">
+            </form>
+            <ul id="taskList" data-role="listview" data-inset="true">
+                <!-- Tasks will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
