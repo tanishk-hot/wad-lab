@@ -1,0 +1,36 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.todo-item.completed {
+    background-color: #e9ecef;
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.todo-actions {
+    margin-left: auto;
+}
+
+.todo-actions button {
+    margin-left: 5px;
+}
+
+.edit-input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.todo-checkbox {
+    margin-right: 15px;
+}

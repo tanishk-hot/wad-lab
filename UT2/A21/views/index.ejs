@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bookstore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Online Bookstore Management</h1>
+
+        <!-- Search Form -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Search Books</h3>
+            </div>
+            <div class="card-body">
+                <form action="/search" method="GET">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="title" class="form-control" placeholder="Title">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="author" class="form-control" placeholder="Author">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <select name="category" class="form-control">
+                                <option value="">Select Category</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Non-Fiction">Non-Fiction</option>
+                                <option value="Science">Science</option>
+                                <option value="Technology">Technology</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add New Book Form -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Add New Book</h3>
+            </div>
+            <div class="card-body">
+                <form action="/books" method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="title" class="form-control" placeholder="Title" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="author" class="form-control" placeholder="Author" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="isbn" class="form-control" placeholder="ISBN" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="number" name="price" class="form-control" placeholder="Price" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="number" name="stock" class="form-control" placeholder="Stock" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <select name="category" class="form-control" required>
+                                <option value="">Select Category</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Non-Fiction">Non-Fiction</option>
+                                <option value="Science">Science</option>
+                                <option value="Technology">Technology</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="date" name="publishedDate" class="form-control">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <textarea name="description" class="form-control" placeholder="Description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Book</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Books Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(book => { %>
+                    <tr>
+                        <td><%= book.title %></td>
+                        <td><%= book.author %></td>
+                        <td><%= book.isbn %></td>
+                        <td><%= book.category %></td>
+                        <td>$<%= book.price %></td>
+                        <td><%= book.stock %></td>
+                        <td>
+                            <a href="/books/<%= book.isbn %>" class="btn btn-info btn-sm">View</a>
+                            <a href="/books/<%= book.isbn %>/delete" class="btn btn-danger btn-sm" 
+                               onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

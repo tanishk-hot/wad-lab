@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Database</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Music Database</h1>
+        <p>Total Songs: <%= count %></p>
+
+        <!-- Add New Song Form -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Add New Song</h3>
+            </div>
+            <div class="card-body">
+                <form action="/add" method="POST">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="songname" class="form-control" placeholder="Song Name" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="film" class="form-control" placeholder="Film Name" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="music_director" class="form-control" placeholder="Music Director" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="singer" class="form-control" placeholder="Singer" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="actor" class="form-control" placeholder="Actor">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" name="actress" class="form-control" placeholder="Actress">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Song</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Songs Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Song Name</th>
+                    <th>Film Name</th>
+                    <th>Music Director</th>
+                    <th>Singer</th>
+                    <th>Actor</th>
+                    <th>Actress</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% songs.forEach(song => { %>
+                    <tr>
+                        <td><%= song.songname %></td>
+                        <td><%= song.film %></td>
+                        <td><%= song.music_director %></td>
+                        <td><%= song.singer %></td>
+                        <td><%= song.actor || '-' %></td>
+                        <td><%= song.actress || '-' %></td>
+                        <td>
+                            <a href="/delete/<%= song._id %>" class="btn btn-danger btn-sm">Delete</a>
+                            <button class="btn btn-primary btn-sm" onclick="showUpdateForm('<%= song._id %>')">Update Cast</button>
+                        </td>
+                    </tr>
+                    <tr id="update-<%= song._id %>" style="display: none;">
+                        <td colspan="7">
+                            <form action="/update/<%= song._id %>" method="POST" class="row g-3">
+                                <div class="col-md-5">
+                                    <input type="text" name="actor" class="form-control" placeholder="Actor Name" required>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" name="actress" class="form-control" placeholder="Actress Name" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function showUpdateForm(id) {
+            const row = document.getElementById(`update-${id}`);
+            row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+        }
+    </script>
+</body>
+</html>
